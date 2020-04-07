@@ -1,0 +1,5 @@
+com\micro\usuarios\models\dao\UsuarioDao.class
+com\micro\usuarios\RepositoryConfig.class
+com\micro\usuarios\ServicioUsuariosApplication.class
+com\micro\usuarios\models\entity\Foo.class
+com\micro\usuarios\models\dao\IFooDao.class
