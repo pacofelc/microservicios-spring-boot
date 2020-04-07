@@ -1,0 +1,4 @@
+com\micro\zuul\filter\PreTiempoTranscurridoFilter.class
+com\micro\zuul\oauth\ResourceServerConfig.class
+com\micro\zuul\ZuulServerApplication.class
+com\micro\zuul\filter\PostTiempoTranscurridoFilter.class

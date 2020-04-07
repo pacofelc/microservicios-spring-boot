@@ -1,0 +1,10 @@
+ejecuta con 
+
+java -jar zipkin-server-2.21.0-exec.jar
+
+
+Abre un navegador en localhost y puerto http://localhost:9411/zipkin/
+
+
+Para usar la bbdd mysql y la cola Rabbitmq utilizar zipkin.cmd
+
