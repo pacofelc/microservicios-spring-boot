@@ -1,0 +1,3 @@
+com\micro\commons\usuarios\models\entity\Usuario.class
+com\micro\commons\usuarios\ServicioUsuariosCommonsApplication.class
+com\micro\commons\usuarios\models\entity\Rol.class
