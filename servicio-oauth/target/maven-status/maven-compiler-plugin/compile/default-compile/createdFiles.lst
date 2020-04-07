@@ -1,0 +1,8 @@
+com\micro\oauth\security\SpringSecurityConfig.class
+com\micro\oauth\security\AuthorizationServerConfig.class
+com\micro\oauth\ServicioOauthApplication.class
+com\micro\oauth\clients\UsuarioFeignClient.class
+com\micro\oauth\services\IUsuarioService.class
+com\micro\oauth\security\event\AuthenticationSuccessErrorHandler.class
+com\micro\oauth\services\UsuarioService.class
+com\micro\oauth\security\InfoAdicionalToken.class

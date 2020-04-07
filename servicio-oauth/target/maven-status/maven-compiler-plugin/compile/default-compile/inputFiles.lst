@@ -1,0 +1,8 @@
+C:\repo\microservicios\servicio-oauth\src\main\java\com\micro\oauth\security\AuthorizationServerConfig.java
+C:\repo\microservicios\servicio-oauth\src\main\java\com\micro\oauth\services\IUsuarioService.java
+C:\repo\microservicios\servicio-oauth\src\main\java\com\micro\oauth\security\InfoAdicionalToken.java
+C:\repo\microservicios\servicio-oauth\src\main\java\com\micro\oauth\services\UsuarioService.java
+C:\repo\microservicios\servicio-oauth\src\main\java\com\micro\oauth\ServicioOauthApplication.java
+C:\repo\microservicios\servicio-oauth\src\main\java\com\micro\oauth\security\SpringSecurityConfig.java
+C:\repo\microservicios\servicio-oauth\src\main\java\com\micro\oauth\clients\UsuarioFeignClient.java
+C:\repo\microservicios\servicio-oauth\src\main\java\com\micro\oauth\security\event\AuthenticationSuccessErrorHandler.java
