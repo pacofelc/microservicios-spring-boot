@@ -1,0 +1,5 @@
+com\micro\producto\servicioproducto\models\service\ProductoServiceImpl.class
+com\micro\producto\servicioproducto\ServicioProductoApplication.class
+com\micro\producto\servicioproducto\controller\ProductoController.class
+com\micro\producto\servicioproducto\models\dao\ProductoDao.class
+com\micro\producto\servicioproducto\models\service\IProductoService.class

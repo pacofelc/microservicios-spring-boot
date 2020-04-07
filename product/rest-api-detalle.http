@@ -1,0 +1,12 @@
+GET http://localhost:8002/listar
+Accept: application/json
+
+###
+GET http://localhost:8002/detalle/1/cantidad/2
+Accept: */*
+Cache-Control: no-cache
+
+<> 2020-03-27T113536.200.json
+
+###
+
