@@ -1,0 +1,111 @@
+
+-- Creamos la red
+docker network create microservicios
+
+-- Crear imagen de CONFIG-SERVER
+cd \repo\microservicios\config-server
+vi Dockerfile
+mvnw.cmd clean package
+docker build -t config-server:v1 .
+docker images
+
+-- lanzar imagen de CONFIG-SERVER
+docker run -p 8888:8888 --name config-server --network microservicios config-server:v1
+
+
+-- Crear imagen de EUREKA-SERVER
+cd \repo\microservicios\eureka-server
+vi Dockerfile
+mvnw.cmd clean package
+docker build -t eureka-server:v1 .
+docker images
+
+-- lanzar imagen de EUREKA-SERVER
+docker run -p 8761:8761 --name eureka-server --network microservicios eureka-server:v1
+
+
+-- Crear imagen de MySQL
+docker pull mysql:8
+
+-- Arrancar MySQL (-d es background)
+docker run -p 3306:3306 --name mysql8-server  --network microservicios -e MYSQL_ROOT_PASSWORD=sasa -e MYSQL_DATABASE=db_spring_cloud -d mysql:8
+-- Ver logs
+docker logs -f mysql8-server
+
+-- Crear imagen Postgres
+docker pull postgres:12-alpine
+
+-- Arrancar Postgres
+docker run -p 5432:5432 --name postgres12-server --network microservicios -e POSTGRES_DB=prueba -e POSTGRES_USER=prueba  -e POSTGRES_PASSWORD=prueba -d postgres:12-alpine
+
+--Ver logs
+docker logs postgres12-server
+
+
+-- VER PROCESOS
+docker ps
+
+-- VER LOGS
+docker logs <proceso_id>
+
+-- INSPECCIONAR VER IP, ETC.
+docker inspect <container-id>
+
+-- PARAR TODOS LOS CONTENEDORES ARRANCADOS (OJO solo funciona en POWERSHELL)
+docker stop $(docker ps -q)
+
+============================================
+
+-- Cuando generamos el jar de Productos y de Usuarios tenemos que saltarnos los tests porque fallará al conectarse a la BBDD
+-- Crear imagen de SERVICIO-PRODUCTO
+mvnw.cmd clean package -DskipTests
+docker build -t servicio-producto:v1 .
+
+-- Arrancar SERVICIO-PRODUCTO (-P puerto aleatorio) (--name servicio-producto es opcional porque los demás microservicios se conectan a este por eureka)
+docker run -P --name servicio-producto --network microservicios servicio-producto:v1
+
+-- Crear imagen de ZOOL-SERVER
+mvnw.cmd clean package -DskipTests
+docker build -t zuul-server:v1 .
+
+-- Arrancar ZUUL-SERVER
+docker run -p 8090:8090 --name zuul-server --network microservicios zuul-server:v1
+
+-- Crear imagen SERVICIO-USUARIOS
+mvnw.cmd clean package -DskipTests
+docker build -t servicio-usuarios:v1 . 
+
+-- Arrancar SERVICIO-USUARIOS
+docker run -P --name servicio-usuarios --network microservicios servicio-usuarios:v1
+
+-- Crear imagen SERVICIO-OAUTH
+mvnw.cmd clean package -DskipTests
+docker build -t servicio-oauth:v1 . 
+
+-- Arrancar SERVICIO-OAUTH
+docker run -p 9100:9100 --name servicio-oauth --network microservicios servicio-oauth:v1
+
+-- Crear imagen SERVICIO-ITEM
+mvnw.cmd clean install -DskipTests
+docker build -t servicio-item:v1 . 
+
+-- Arrancar SERVICIO-ITEM
+docker run -p 8002:8002 -p 8005:8005 -p 8007:8007 --name servicio-item --network microservicios servicio-item:v1
+
+=================================================
+
+--Crear imagen rabbitmq con admin web (user guest /pass guest)
+docker pull rabbitmq:3.8-management-alpine
+
+
+- Arrancar Rabbit puerto web y puerto servicio 
+docker run -p 15672:15672 -p 5672:5672 --name rabbitmq-server --network microservicios rabbitmq:3.8-management-alpine
+
+-- Construir zipkin-server
+-- Bajo el jar de zipkin.io
+-- Creo una base de datos zipkin en mysql, con usuario zipkin/zipkin dando los permisos (clase 119)
+docker build -t zipkin-server:v1 . 
+
+docker run -p 9411:9411 --name zipkin-server --network microservicios -e RABBIT_ADDRESSES=rabbitmq-server:5672 -e STORAGE_TYPE=mysql -e MYSQL_USER=zipkin -e MYSQL_PASS=zipkin -e MYSQL_HOST=mysql8-server zipkin-server:v1
+
+

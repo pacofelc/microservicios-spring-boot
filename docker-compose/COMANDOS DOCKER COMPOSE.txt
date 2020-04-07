@@ -1,0 +1,11 @@
+-- Levantar
+docker-compose up
+
+-- Parar
+docker-compose down -v
+
+-- Levantar solo un servicio
+docker-compose up -d mysql8-server
+
+-- Parar un servicio
+docker-compose down -d mysql8-server

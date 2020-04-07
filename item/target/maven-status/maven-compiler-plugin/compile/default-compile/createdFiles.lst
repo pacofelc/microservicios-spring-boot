@@ -1,0 +1,8 @@
+com\micro\item\servicioitem\controller\ItemController.class
+com\micro\item\servicioitem\model\service\ItemService.class
+com\micro\item\servicioitem\model\Item.class
+com\micro\item\servicioitem\model\service\ItemServiceFeign.class
+com\micro\item\servicioitem\cliente\ProductoClienteRest.class
+com\micro\item\servicioitem\AppConfig.class
+com\micro\item\servicioitem\model\service\ItemServiceImpl.class
+com\micro\item\servicioitem\ServicioitemApplication.class
